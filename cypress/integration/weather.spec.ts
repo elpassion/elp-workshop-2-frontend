@@ -16,7 +16,7 @@ describe("example", () => {
 
     testConfirmationButtonAPIRequest('.confirm-btn', 'Find Weather Details')
 
-    // testTabByValue('.tab-2', 'Rapid Weather API')
+    // testTabByValue('.tab-2', 'Weatherbit API')
 
   })
 })
