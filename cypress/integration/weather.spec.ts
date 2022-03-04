@@ -1,3 +1,6 @@
+// type definitions for Cypress object "cy"
+/// <reference types="cypress" />
+
 describe("example", () => {
   it("shows data", () => {
     // given

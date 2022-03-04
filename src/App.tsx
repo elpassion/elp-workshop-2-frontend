@@ -1,4 +1,4 @@
-function App() {
+const App = () => {
   return (
     <div>
       Temperature: <span className="temperature">10</span>
