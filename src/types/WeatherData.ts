@@ -9,9 +9,8 @@ export type WeatherData = {
 }
 
 export type Coords = {
-  lon: number | null,
-  lat: number | null
+  latitude: number | null,
+  longitude: number | null
 }
 
 export type SynthEvent = React.SyntheticEvent<HTMLParagraphElement, Event>
-export type Change = React.ChangeEvent<HTMLInputElement>
