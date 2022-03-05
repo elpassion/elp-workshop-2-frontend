@@ -1,6 +1,6 @@
 import React from 'react'
 import { FormControl, FormHelperText, InputBase, Paper } from '@mui/material'
-import { CustomInputPropTypes } from '../types/WeatherData'
+import { CustomInputPropTypes } from '../types/inputTypes'
 import { customInputSx } from '../sxStyles/customInputSx'
 
 const CustomInput: React.FC<CustomInputPropTypes> = ({ id, type, registerProps, placeholder, error }) => {

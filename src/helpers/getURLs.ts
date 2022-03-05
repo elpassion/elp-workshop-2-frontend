@@ -1,4 +1,4 @@
-import { Coords } from "../types/WeatherData"
+import { Coords } from "../types/weatherData"
 const OPEN_WEATHER_MAP_API_KEY = process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY
 const WEATHERBIT_API_KEY = process.env.REACT_APP_WEATHERBIT_API_KEY
 export const getURL = (reqValue: string, coordinates: Coords): string => {

@@ -1,4 +1,4 @@
-import { WeatherData } from "../types/WeatherData"
+import { WeatherData } from "../types/weatherData"
 
 export const dataDestructure = (value: any, tabValue: string): WeatherData => {
   if (tabValue === 'Weatherbit API' && value?.data) {
