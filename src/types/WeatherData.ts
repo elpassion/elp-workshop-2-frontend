@@ -14,3 +14,11 @@ export type Coords = {
 } | null
 
 export type SynthEvent = React.SyntheticEvent<HTMLParagraphElement, Event>
+
+export type CustomInputPropTypes = {
+  id: string,
+  type: string,
+  registerProps: any,
+  placeholder: string,
+  error: any
+}

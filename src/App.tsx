@@ -1,12 +1,15 @@
 import React from "react"
 import { useForm } from 'react-hook-form'
 import { useAsyncFn } from "react-use"
+import CustomInput from "./components/CustomInput"
 import LayoutMain from "./components/LayoutMain"
 import WeatherDetails from "./components/WeatherDetails"
 import { dataDestructure } from "./helpers/dataDestructure"
 import { coordsValidate } from "./helpers/formValidations"
 import { getURL } from "./helpers/getURLs"
 import { Coords, SynthEvent } from "./types/WeatherData"
+import { Box, Button } from "@mui/material"
+import { weatherAppSx } from "./sxStyles/weatherAppSx"
 
 const App: React.FC = () => {
   const [tabValue, setTabValue] = React.useState('Open Weather Map API')
@@ -49,49 +52,53 @@ const App: React.FC = () => {
   const weatherData = dataDestructure(value, tabValue)
   return (
     <LayoutMain>
-        <h1>{tabValue}</h1>
-        <div>
-          <p className="tab-1" onClick={handleClick}>Open Weather Map API</p>
-          <p className="tab-2" onClick={handleClick}>Weatherbit API</p>
-          {coordinates && (<button onClick={TryAgainHandleCLick}>Try another location dude</button>)}
-        </div>
+      <h1>{tabValue}</h1>
+      <div>
+        <p className="tab-1" onClick={handleClick}>Open Weather Map API</p>
+        <p className="tab-2" onClick={handleClick}>Weatherbit API</p>
+        {coordinates && (<button onClick={TryAgainHandleCLick}>Try another location dude</button>)}
+      </div>
 
-        {!coordinates && (
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="longitude">Longitude</label>
-            <input
+      {!coordinates && (
+        <Box component='form' onSubmit={handleSubmit(onSubmit)} sx={weatherAppSx.formContainer.wrapper}>
+          <Box sx={weatherAppSx.formContainer.inputWrapper}>
+            <CustomInput
               id="longitude"
-              type="number"
-              {...register("longitude", coordsValidate)}
+              type={"number"}
+              registerProps={{ ...register("longitude", coordsValidate) }}
+              placeholder={"longitude"}
+              error={errors["longitude"]}
             />
-            <label htmlFor="latitude">Latitude</label>
-            <input
+            <CustomInput
               id="latitude"
-              type="number"
-              {...register("latitude", coordsValidate)}
+              type={"number"}
+              registerProps={{ ...register("latitude", coordsValidate) }}
+              placeholder={"latitude"}
+              error={errors["latitude"]}
             />
+          </Box>
 
-            <button type="submit" className="confirm-btn">Find Weather Details</button>
-          </form>
-        )
+          <Button type="submit" variant="contained" color="success" className="confirm-btn">Find Weather Details</Button>
+        </Box>
+      )
+      }
+      <div>
+        {
+          (error || value?.message || value?.error) && (
+            <div>Error: {error || value.message || value.error}</div>
+          )
         }
-        <div>
-          {
-            (error || value?.message || value?.error) && (
-              <div>Error: {error || value.message || value.error}</div>
-            )
-          }
-          {
-            loading && (
-              <div>Loading mate</div>
-            )
-          }
-          {
-            coordinates && (
-              <WeatherDetails data={weatherData} />
-            )
-          }
-        </div>
+        {
+          loading && (
+            <div>Loading mate</div>
+          )
+        }
+        {
+          coordinates && (
+            <WeatherDetails data={weatherData} />
+          )
+        }
+      </div>
     </LayoutMain>
   )
 }
