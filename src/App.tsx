@@ -9,7 +9,7 @@ import { Coords, SynthEvent } from "./types/WeatherData"
 
 const App: React.FC = () => {
   const [tabValue, setTabValue] = React.useState('Open Weather Map API')
-  const [coordinates, setCoordinates] = React.useState<Coords>({ latitude: null, longitude: null })
+  const [coordinates, setCoordinates] = React.useState<Coords>(null)
 
   const [{ value, loading, error }, fetchWeather] = useAsyncFn(async () => {
     const URL = getURL(tabValue, coordinates)
@@ -18,21 +18,20 @@ const App: React.FC = () => {
     return result
   }, [tabValue, coordinates])
 
-  const { register, handleSubmit, formState: { errors } } = useForm<Coords>()
+  const { register, handleSubmit, formState: { errors }, reset } = useForm()
   const onSubmit = (data: Coords) => {
     setCoordinates({
-      longitude: data.longitude,
-      latitude: data.latitude
+      longitude: data?.longitude,
+      latitude: data?.latitude
     })
   }
-
   React.useEffect(() => {
     if (tabValue === 'Weatherbit API' && value?.current) {
       fetchWeather()
     } else if (tabValue === 'Open Weather Map API' && value?.data) {
       fetchWeather()
     }
-    if (coordinates.latitude && coordinates.longitude) {
+    if (coordinates?.latitude && coordinates?.longitude) {
       fetchWeather()
     }
     // 'value' excluded due to infinite render loop.
@@ -42,6 +41,10 @@ const App: React.FC = () => {
   const handleClick = (event: SynthEvent) => {
     setTabValue((event.target as HTMLParagraphElement).innerText)
   }
+  const TryAgainHandleCLick = () => {
+    setCoordinates(null)
+    reset()
+  }
   const weatherData = dataDestructure(value, tabValue)
   return (
     <>
@@ -49,23 +52,28 @@ const App: React.FC = () => {
       <div>
         <p className="tab-1" onClick={handleClick}>Open Weather Map API</p>
         <p className="tab-2" onClick={handleClick}>Weatherbit API</p>
+        {coordinates && (<button onClick={TryAgainHandleCLick}>Try another location dude</button>)}
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="longitude">Longitude</label>
-        <input
-          id="longitude"
-          type="number"
-          {...register("longitude", coordsValidate)}
-        />
-        <label htmlFor="latitude">Latitude</label>
-        <input
-          id="latitude"
-          type="number"
-          {...register("latitude", coordsValidate)}
-        />
-        <button type="submit" className="confirm-btn">Find Weather Details</button>
-      </form>
+      {!coordinates && (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="longitude">Longitude</label>
+          <input
+            id="longitude"
+            type="number"
+            {...register("longitude", coordsValidate)}
+          />
+          <label htmlFor="latitude">Latitude</label>
+          <input
+            id="latitude"
+            type="number"
+            {...register("latitude", coordsValidate)}
+          />
+
+          <button type="submit" className="confirm-btn">Find Weather Details</button>
+        </form>
+      )
+      }
       <div>
         {
           (error || value?.message || value?.error) && (
@@ -77,7 +85,11 @@ const App: React.FC = () => {
             <div>Loading mate</div>
           )
         }
-        <WeatherDetails data={weatherData} />
+        {
+          coordinates && (
+            <WeatherDetails data={weatherData} />
+          )
+        }
       </div>
     </>
   )
