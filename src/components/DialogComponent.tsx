@@ -1,48 +1,12 @@
 import * as React from 'react'
 import Button from '@mui/material/Button'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
-import DialogTitle from '@mui/material/DialogTitle'
-import Dialog from '@mui/material/Dialog'
-// import Typography from '@mui/material/Typography'
-import { Box } from '@mui/material'
-import { DialogComponentPropTypes, DialogModalPropTypes } from '../types/muiDialogTypes'
-
-const APIs = ['Open Weather Map API', 'Weatherbit API']
-
-const DialogModal: React.FC<DialogModalPropTypes> = (props) => {
-  const { onClose, selectedValue, open } = props
-
-  const handleClose = () => {
-    onClose(selectedValue)
-  }
-
-  const handleListItemClick = (value: any) => {
-    onClose(value)
-  }
-
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Choose Weather API</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        {APIs.map((apiName) => (
-          <ListItem
-            button
-            onClick={() => handleListItemClick(apiName)}
-            key={apiName}
-            sx={{ textAlign: "center" }}
-          >
-            <ListItemText primary={apiName} />
-          </ListItem>
-        ))}
-      </List>
-    </Dialog>
-  )
-}
+import { Box, Divider, Typography } from '@mui/material'
+import { DialogComponentPropTypes } from '../types/muiDialogTypes'
+import DialogModal from './DialogModal'
+import { dialogComponentSx } from '../sxStyles/dialogComponentSx'
 
 const DialogComponent: React.FC<DialogComponentPropTypes> = (props) => {
-  const { tabValue, setTabValue } = props
+  const { tabValue, setTabValue, coordinates } = props
   const [open, setOpen] = React.useState(false)
 
   const handleClickOpen = () => {
@@ -55,22 +19,24 @@ const DialogComponent: React.FC<DialogComponentPropTypes> = (props) => {
   }
 
   return (
-    <Box sx={{ marginTop: "30px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <Button variant="contained" onClick={handleClickOpen} sx={{ width: 0.8, bgcolor: "rgba(255,255,255,0.8)", color: "black", padding: "10px 5px", minHeight: "80px" }}>
-        {tabValue ? `Chosen API: ${tabValue}` : 'Choose API'}
+    <Box sx={dialogComponentSx.wrapper}>
+      <Button variant="contained" onClick={handleClickOpen} sx={dialogComponentSx.btn}>
+        {!coordinates ?
+          (tabValue ? `Chosen API: ${tabValue}` : 'Choose API') :
+          (
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Typography variant='body1'>{tabValue}</Typography>
+              <Divider sx={{margin: "5px 0 10px"}} />
+              <Typography variant='caption'>Try other API</Typography>
+            </Box>
+          )
+        }
       </Button>
       <DialogModal
         selectedValue={tabValue}
         open={open}
         onClose={handleClose}
       />
-      {/* {
-        tabValue && (
-          <Typography variant="subtitle1" component="div" sx={{ marginTop: "15px", fontWeight: "bold", fontSize: "14px" }}>
-            Selected API: {tabValue}
-          </Typography>
-        )
-      } */}
     </Box>
   )
 }

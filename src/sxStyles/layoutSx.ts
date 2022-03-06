@@ -8,16 +8,16 @@ export const layoutSx = {
         height: "100vh",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        // alignItems: "center"
     },
     paper: {
         // backgroundImage: "url(./pic3.jpg)",
         // backgroundRepeat: " no-repeat",
         // backgroundSize: "cover",
         // backgroundPosition: "center",
-        backgroundColor: "rgba(255,255,255,0.7)",
-        width: "320px",
-        minHeight: "400px",
+        // backgroundColor: "rgba(255,255,255,0.7)",
+        // width: "320px",
+        // minHeight: "400px",
         padding: "25px 10px",
         borderRadius: "4px"
     }

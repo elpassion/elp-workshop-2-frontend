@@ -54,23 +54,35 @@ const App: React.FC = () => {
   //   setTabValue(newValue)
   // }
 
-  // const tryAgainHandleClick = () => {
-  //   setCoordinates(null)
-  //   reset()
-  // }
+  const tryAgainHandleClick = () => {
+    setCoordinates(null)
+    setTabValue('')
+    reset()
+  }
   const weatherData = dataDestructure(value, tabValue)
   return (
     <LayoutMain>
-      <Typography variant="h4" component='h1' textAlign='center'>
-        Weather Forecast
-      </Typography>
+        <Typography
+          variant="h4"
+          component='h1'
+          textAlign='center'
+          sx={{
+            color: "whitesmoke",
+            fontSize: "4rem",
+            width: "fit-content",
+            marginTop: "150px"
+          }}
+        >
+          Weather Forecast
+        </Typography>
 
-      {!coordinates && (
-        <DialogComponent
-          tabValue={tabValue}
-          setTabValue={setTabValue}
-        />
-      )}
+      {/* {!coordinates && ( */}
+      <DialogComponent
+        tabValue={tabValue}
+        setTabValue={setTabValue}
+        coordinates={coordinates}
+      />
+      {/* )} */}
 
       {!coordinates && (
         <Box component='form' onSubmit={handleSubmit(onSubmit)} sx={weatherAppSx.formContainer.wrapper}>
@@ -98,7 +110,12 @@ const App: React.FC = () => {
           <div>Error: {error || value.message || value.error}</div>
         )}
         {loading && (<div>Loading mate</div>)}
-        {coordinates && (<WeatherDetails data={weatherData} />)}
+        {coordinates && (
+          <WeatherDetails
+            data={weatherData}
+            coordinates={coordinates}
+            tryAgainHandleClick={tryAgainHandleClick}
+          />)}
       </div>
     </LayoutMain>
   )

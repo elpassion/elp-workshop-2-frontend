@@ -1,23 +1,22 @@
-import { Box, Button, Switch, Typography } from '@mui/material'
 import React from 'react'
-import { WeatherData } from '../types/weatherData'
+import { Box, Button } from '@mui/material'
+import { Coords, WeatherData } from '../types/weatherData'
 
-type WeatherProps = {
+type WeatherDetailsPropTypes = {
   data: WeatherData
+  coordinates: Coords
+  tryAgainHandleClick: () => void
+  // handleChange: (event: ChangeSynthEvent, newValue: string) => void,
+  // tabValue: string,
+  // handleClick: (event: MouseSynthEvent) => void,
 }
 
-const WeatherDetails: React.FC<WeatherProps> = ({ data }) => {
+const WeatherDetails: React.FC<WeatherDetailsPropTypes> = ({ data, coordinates, tryAgainHandleClick }) => {
   const { status, lat, lon, timezone, temp, pressure, humidity } = data
 
   return (
     <div>
       <Box sx={{ display: "flex", justifyContent: "end" }}>
-        <Typography>Open Weather Map API</Typography>
-        {/* <Switch
-          // disabled
-          // defaultChecked
-        /> */}
-        <Typography>Weatherbit API</Typography>
       </Box>
       {
         status && (
@@ -31,8 +30,8 @@ const WeatherDetails: React.FC<WeatherProps> = ({ data }) => {
           </>
         )
       }
-      <Button variant='contained'>Try another location dude</Button>
-      {/* {coordinates && (<Button onClick={tryAgainHandleCLick}>Try another location dude</Button>)} */}
+      {/* <Button variant='contained'>Try another location dude</Button> */}
+      {coordinates && (<Button variant='contained' color='info' onClick={tryAgainHandleClick}>Try another location</Button>)}
     </div>
   )
 }
