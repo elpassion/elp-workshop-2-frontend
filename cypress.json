@@ -1,7 +1,7 @@
 {
     "baseUrl": "http://localhost:3000",
     "env": {
-        "openWeatherApi": "d45fdad17e3b225c88a4be40c4a6ee2b",
+        "openWeatherApi": "d91afbf8b381643eed3707c4da179c9c",
         "weatherBitApi": "227ec9c3885844a6b61921d59b928645"
     }
 }

@@ -1,3 +1,4 @@
+import moment from "moment"
 import { WeatherData } from "../types/weatherData"
 
 export const dataDestructure = (value: any, tabValue: string): WeatherData => {
@@ -9,7 +10,12 @@ export const dataDestructure = (value: any, tabValue: string): WeatherData => {
       pres,
       rh,
       timezone,
-      weather
+      sunrise,
+      sunset,
+      wind_spd,
+      weather: {
+        description
+      }
     } = value.data[0]
     return {
       status: true,
@@ -17,9 +23,12 @@ export const dataDestructure = (value: any, tabValue: string): WeatherData => {
       lon,
       timezone,
       temp: app_temp > 100 ? (app_temp - 273.15).toFixed(1) : app_temp,
-      pressure: pres,
-      humidity: rh,
-      weather
+      pressure: pres.toFixed(1),
+      humidity: rh.toFixed(1),
+      sunrise,
+      sunset,
+      windSpeed: wind_spd.toFixed(1),
+      description
     }
   } else if (tabValue === 'Open Weather Map API' && value?.current) {
     const {
@@ -27,10 +36,15 @@ export const dataDestructure = (value: any, tabValue: string): WeatherData => {
       lon,
       timezone,
       current: {
-        weather,
+        weather: {
+          description
+        },
+        wind_speed,
         humidity,
         temp,
-        pressure
+        pressure,
+        sunrise,
+        sunset
       }
     } = value
     return {
@@ -39,9 +53,12 @@ export const dataDestructure = (value: any, tabValue: string): WeatherData => {
       lon,
       timezone,
       temp: temp > 100 ? (temp - 273.15).toFixed(1) : temp,
-      pressure,
-      humidity,
-      weather
+      pressure: pressure.toFixed(1),
+      humidity: humidity.toFixed(1),
+      sunrise: moment(sunrise).format('LT'),
+      sunset: moment(sunset).format('LT'),
+      windSpeed: wind_speed.toFixed(1),
+      description
     }
   }
   return { status: false }

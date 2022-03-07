@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Divider, Stack, Typography } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import { Coords } from '../types/weatherData'
 import { Link, useLocation } from 'react-router-dom'
 import { useAsyncFn } from 'react-use'
@@ -24,10 +24,9 @@ const PageWeatherResults: React.FC = () => {
         const result = await response.json()
         return result
     }, [tabValue, coordinates])
-
     const weatherData = dataDestructure(value, tabValue)
-    const { status, lat, lon, timezone, temp, pressure, humidity, weather } = weatherData
-
+    const { status, lat, lon, timezone, temp, pressure, humidity, sunrise, sunset, description, windSpeed } = weatherData
+    console.log("weatherData ", value)
     React.useEffect(() => {
         if (tabValue === 'Weatherbit API' && value?.current) {
             fetchWeather()
@@ -40,7 +39,6 @@ const PageWeatherResults: React.FC = () => {
         // 'value' excluded due to infinite render loop.
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tabValue, coordinates])
-
     return (
         <Box sx={pageWeatherResultsSx.container}>
             <Stack
@@ -83,7 +81,7 @@ const PageWeatherResults: React.FC = () => {
                                                     "&::first-letter": {
                                                         textTransform: "uppercase"
                                                     }
-                                                }}>{weather?.[0]?.description}</Typography>
+                                                }}>{description}</Typography>
                                             </Stack>
                                         </Stack>
                                         <Stack flexDirection="row" justifyContent="space-evenly" alignItems="center" sx={pageWeatherResultsSx.blackBoard}>
@@ -92,8 +90,8 @@ const PageWeatherResults: React.FC = () => {
                                                 justifyContent="space-evenly"
                                             >
                                                 <Box sx={pageWeatherResultsSx.detailsWrapper}>
-                                                    <Typography variant="h5">7mph</Typography>
-                                                    <Typography variant="h6">wind_spd</Typography>
+                                                    <Typography variant="h5">{windSpeed} m/h</Typography>
+                                                    <Typography variant="h6">wind</Typography>
                                                 </Box>
                                                 <Box sx={pageWeatherResultsSx.detailsWrapper}>
                                                     <Typography variant="h5">{temp}&deg;</Typography>
@@ -109,8 +107,8 @@ const PageWeatherResults: React.FC = () => {
                                                     <Typography variant="h6">pres</Typography>
                                                 </Box>
                                                 <Box sx={pageWeatherResultsSx.detailsWrapper}>
-                                                    <Typography variant="h5">7mph</Typography>
-                                                    <Typography variant="h6">wind_spd</Typography>
+                                                    <Typography variant="h5">{humidity}</Typography>
+                                                    <Typography variant="h6">humidity</Typography>
                                                 </Box>
                                             </Stack>
                                             <Stack
@@ -118,11 +116,11 @@ const PageWeatherResults: React.FC = () => {
                                                 justifyContent="space-evenly"
                                             >
                                                 <Box sx={pageWeatherResultsSx.detailsWrapper}>
-                                                    <Typography variant="h5">05:27</Typography>
+                                                    <Typography variant="h5">{sunrise}</Typography>
                                                     <Typography variant="h6">Sunrise</Typography>
                                                 </Box>
                                                 <Box sx={pageWeatherResultsSx.detailsWrapper}>
-                                                    <Typography variant="h5">20:57</Typography>
+                                                    <Typography variant="h5">{sunset}</Typography>
                                                     <Typography variant="h6">Sunset</Typography>
                                                 </Box>
                                             </Stack>
@@ -136,6 +134,7 @@ const PageWeatherResults: React.FC = () => {
                                         />
                                     </Box>
                                     <Button
+                                        className='previous-route'
                                         variant='contained'
                                         color='info'
                                         component={Link}

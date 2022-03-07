@@ -27,6 +27,7 @@ const DialogModal: React.FC<DialogModalPropTypes> = (props) => {
           <ListItem
             button
             onClick={() => handleListItemClick(apiName)}
+            className={apiName.split(' ').join('')} //convert to one class without spaces -> for cypress purposes
             key={apiName}
             sx={{
               textAlign: "center",

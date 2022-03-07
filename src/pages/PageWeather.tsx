@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom'
 const PageWeather = () => {
   const navigate = useNavigate()
   const [tabValue, setTabValue] = React.useState('')
-  // const [coordinates, setCoordinates] = React.useState<Coords>(null)
 
   const { register, handleSubmit, formState: { errors }, watch } = useForm()
   const onSubmit = (data: Coords) => {
@@ -67,19 +66,6 @@ const PageWeather = () => {
           sx={pageWeatherSx.btn}
         >Search Weather Details</Button>
       </Box>
-
-      {/* <div>
-        {(error || value?.message || value?.error) && (
-          <div>Error: {error || value.message || value.error}</div>
-        )}
-        {loading && (<div>Loading mate</div>)}
-        {coordinates && (
-          <WeatherDetails
-            data={weatherData}
-            coordinates={coordinates}
-            tryAgainHandleClick={tryAgainHandleClick}
-          />)}
-      </div> */}
     </Box>
   )
 }

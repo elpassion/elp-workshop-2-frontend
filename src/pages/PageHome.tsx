@@ -25,6 +25,7 @@ const PageHome: React.FC = () => {
                 Try out our weather App using coordinates and choosing different API sources!
             </Typography>
             <Button
+                className='getStarted-btn'
                 variant='contained'
                 color='success'
                 component={Link}

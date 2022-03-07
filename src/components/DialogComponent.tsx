@@ -20,7 +20,7 @@ const DialogComponent: React.FC<DialogComponentPropTypes> = (props) => {
 
   return (
     <Box sx={dialogComponentSx.wrapper}>
-      <Button variant="contained" onClick={handleClickOpen} sx={dialogComponentSx.btn}>
+      <Button className="dialog-btn" variant="contained" onClick={handleClickOpen} sx={dialogComponentSx.btn}>
         {!coordinates ?
           (tabValue ? `Chosen API: ${tabValue}` : 'Choose API') :
           (

@@ -6,7 +6,10 @@ export type WeatherData = {
   temp?: number,
   pressure?: number,
   humidity?: number,
-  weather?: any
+  sunrise?: number | string,
+  sunset?: number | string,
+  description?: string,
+  windSpeed?: number | string
 }
 
 export type Coords = {
