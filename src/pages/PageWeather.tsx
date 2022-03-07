@@ -48,10 +48,16 @@ const PageWeather = () => {
           }
         </Box>
 
-        <DialogComponent
-          tabValue={tabValue}
-          setTabValue={setTabValue}
-        />
+        <Box sx={{
+          marginTop: { xs: "10px", md: "30px" },
+          marginBottom: "30px",
+        }}>
+
+          <DialogComponent
+            tabValue={tabValue}
+            setTabValue={setTabValue}
+          />
+        </Box>
         <Button
           disabled={!(tabValue && watchFields[0] && watchFields[1])}
           type="submit"

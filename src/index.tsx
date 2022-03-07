@@ -4,8 +4,8 @@ import App from './App'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles'
 import reportWebVitals from './reportWebVitals'
-import './index.css'
 import theme from './theme'
+import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>

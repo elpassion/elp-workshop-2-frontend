@@ -5,7 +5,8 @@ export type WeatherData = {
   timezone?: string,
   temp?: number,
   pressure?: number,
-  humidity?: number
+  humidity?: number,
+  weather?: any
 }
 
 export type Coords = {

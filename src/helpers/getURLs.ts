@@ -5,7 +5,6 @@ export const getURL = (reqValue: string, coordinates: Coords): string => {
   let URL = ''
   const lat = coordinates?.latitude
   const lon = coordinates?.longitude
-  console.log('urlcoords ', coordinates)
   if (reqValue === 'Open Weather Map API') {
     URL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,daily&appid=${OPEN_WEATHER_MAP_API_KEY}`
   } else if (reqValue === 'Weatherbit API') {

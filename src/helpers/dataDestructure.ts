@@ -8,7 +8,8 @@ export const dataDestructure = (value: any, tabValue: string): WeatherData => {
       app_temp,
       pres,
       rh,
-      timezone
+      timezone,
+      weather
     } = value.data[0]
     return {
       status: true,
@@ -17,7 +18,8 @@ export const dataDestructure = (value: any, tabValue: string): WeatherData => {
       timezone,
       temp: app_temp > 100 ? (app_temp - 273.15).toFixed(1) : app_temp,
       pressure: pres,
-      humidity: rh
+      humidity: rh,
+      weather
     }
   } else if (tabValue === 'Open Weather Map API' && value?.current) {
     const {
@@ -25,6 +27,7 @@ export const dataDestructure = (value: any, tabValue: string): WeatherData => {
       lon,
       timezone,
       current: {
+        weather,
         humidity,
         temp,
         pressure
@@ -37,7 +40,8 @@ export const dataDestructure = (value: any, tabValue: string): WeatherData => {
       timezone,
       temp: temp > 100 ? (temp - 273.15).toFixed(1) : temp,
       pressure,
-      humidity
+      humidity,
+      weather
     }
   }
   return { status: false }

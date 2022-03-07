@@ -3,7 +3,11 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
+}
+body {
+  overflow: hidden;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -18,4 +22,41 @@
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.weatherIcon {
+  width: 150px;
+  height: 150px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .weatherIcon {
+    width: 120px;
+    height: 120px;
+  }
+}
+@media screen and (max-width: 990px) {
+  .weatherIcon {
+    width: 100px;
+    height: 100px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .weatherIcon {
+    width: 70px;
+    height: 70px;
+  }
 }

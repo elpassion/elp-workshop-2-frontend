@@ -21,7 +21,7 @@ const CustomInput: React.FC<CustomInputPropTypes> = ({ id, type, registerProps, 
                 fontFamily: 'Raleway',
                 fontSize: "10px",
                 zIndex: "9",
-                margin: "-18px auto 0",
+                margin: "-15px auto 0",
             }}>{error ? error.message : ''}</FormHelperText>
         </FormControl>
     )

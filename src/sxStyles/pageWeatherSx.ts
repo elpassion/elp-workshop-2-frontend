@@ -1,15 +1,9 @@
 export const pageWeatherSx = {
     container: {
-        // backgroundColor: "rgba(255,255,0,0.25)",
-        // backgroundColor: "rgba(0,0,0,0.3)",
-        // border: "3px solid rgba(255,255,255,0.5)",
         borderRadius: "4px",
         padding: "0 20px",
-        // margin: "0 auto",
         width: "100%",
-        maxWidth: "700px",
-        // minHeight: "350px",
-        // maxHeight: "100vh",
+        maxWidth: "750px",
     },
     heading: {
         color: "whitesmoke",
