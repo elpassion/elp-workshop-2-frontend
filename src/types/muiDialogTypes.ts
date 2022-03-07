@@ -3,7 +3,7 @@ import { Coords } from "./weatherData"
 export type DialogComponentPropTypes = {
     tabValue: string,
     setTabValue: React.Dispatch<React.SetStateAction<string>>,
-    coordinates: Coords
+    coordinates?: Coords
 }
 
 export type DialogModalPropTypes = {

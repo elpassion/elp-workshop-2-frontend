@@ -17,7 +17,12 @@ const CustomInput: React.FC<CustomInputPropTypes> = ({ id, type, registerProps, 
                     sx={customInputSx.formContainer.input}
                 />
             </Paper>
-            <FormHelperText sx={{ fontFamily: 'Raleway' }}>{error ? error.message : ''}</FormHelperText>
+            <FormHelperText sx={{
+                fontFamily: 'Raleway',
+                fontSize: "10px",
+                zIndex: "9",
+                margin: "-18px auto 0",
+            }}>{error ? error.message : ''}</FormHelperText>
         </FormControl>
     )
 }

@@ -6,8 +6,7 @@ import { pageHomeSx } from '../sxStyles/pageHomeSx'
 const PageHome: React.FC = () => {
     return (
         <Box sx={{
-            textAlign: "center",
-            margin: "0 auto",
+            textAlign: "center"
         }}>
             <Typography
                 variant="h4"

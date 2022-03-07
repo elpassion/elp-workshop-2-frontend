@@ -2,6 +2,7 @@ export const layoutSx = {
     container: {
         backgroundImage: "url(./pic1.jpg)",
         // backgroundImage: "url(./pic3.jpg)",
+        // backgroundImage: "url(./pic7.jpg)",
         backgroundRepeat: " no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -26,6 +27,7 @@ export const layoutSx = {
         // maxWidth: "1050px"
         // maxWidth: "750px",
         display: 'flex',
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "center",
     }
 }
