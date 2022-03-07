@@ -44,8 +44,8 @@ export const pageWeatherResultsSx = {
     },
     lonLat: {
         position: "absolute",
-        top: {xs: "-30px", md: "-35px" },
-        right: {xs: "-30px", md: "0" },
+        top: { xs: "-30px", md: "-35px" },
+        right: { xs: "-30px", md: "0" },
         minWidth: "250px",
         color: "rgba(0,0,0,0.6)",
         padding: "5px",
@@ -86,5 +86,6 @@ export const pageWeatherResultsSx = {
         //     flexDirection: "column",
         //     justifyContent: "center",
         //     // alignItems: "center"
-    }
+    },
+    resultError: { width: "100%", height: "100%", color: "red", fontSize: "1.2rem", fontWeight: "bold" }
 }
