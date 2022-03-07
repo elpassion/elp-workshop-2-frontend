@@ -1,10 +1,7 @@
 import React from 'react'
 import { Box } from '@mui/material'
 import { layoutSx } from '../sxStyles/layoutSx'
-
-type LayoutProps = {
-    children: React.ReactNode
-}
+import { LayoutProps } from '../types/childrenTypes'
 
 const LayoutMain: React.FC<LayoutProps> = ({ children }) => {
     return (

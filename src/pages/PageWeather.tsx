@@ -10,6 +10,7 @@ import { pageWeatherSx } from '../sxStyles/pageWeatherSx'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { containerVariants } from '../motionVariants/containerVariants'
+import { repeatableSx } from '../sxStyles/repeatableSx'
 
 const PageWeather = () => {
   const navigate = useNavigate()
@@ -35,7 +36,7 @@ const PageWeather = () => {
         variant="contained"
         color="success"
         startIcon={<ArrowBackIcon />}
-        sx={{ position: "absolute", top: "20px", left: "20px" }}
+        sx={repeatableSx.backBtn}
         onClick={() => navigate(-1)}
         component={motion.div}
         variants={containerVariants}

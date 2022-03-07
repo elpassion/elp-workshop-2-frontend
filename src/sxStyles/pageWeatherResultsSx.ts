@@ -4,9 +4,7 @@ export const pageWeatherResultsSx = {
         borderRadius: "10px",
         border: "2px solid rgba(255,255,255,0.4)",
         width: "80%",
-        // minHeight: "70%",
-        // maxHeight: "75%",
-        height: "60%",
+        height: "65%",
         position: "relative",
     },
     scrollContainer: {
@@ -82,10 +80,6 @@ export const pageWeatherResultsSx = {
         },
     },
     detailsWrapper: {
-        //     display: "flex",
-        //     flexDirection: "column",
-        //     justifyContent: "center",
-        //     // alignItems: "center"
     },
     resultError: { width: "100%", height: "100%", color: "red", fontSize: "1.2rem", fontWeight: "bold" }
 }

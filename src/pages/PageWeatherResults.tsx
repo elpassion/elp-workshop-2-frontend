@@ -1,6 +1,6 @@
 import React from 'react'
+import moment from 'moment'
 import { Backdrop, Box, Button, CircularProgress, Stack, Typography } from '@mui/material'
-import { Coords } from '../types/weatherData'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAsyncFn } from 'react-use'
@@ -10,11 +10,9 @@ import DialogComponent from '../components/DialogComponent'
 import { pageWeatherResultsSx } from '../sxStyles/pageWeatherResultsSx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { containerDataVariants, containerVariants } from '../motionVariants/containerVariants'
+import { LocationState } from '../types/locationTypes'
+import { repeatableSx } from '../sxStyles/repeatableSx'
 
-type LocationState = {
-    coordinates: Coords,
-    tabValueParent: string,
-}
 const PageWeatherResults: React.FC = () => {
     const location = useLocation()
     const navigate = useNavigate()
@@ -28,6 +26,7 @@ const PageWeatherResults: React.FC = () => {
         const result = await response.json()
         return result
     }, [tabValue, coordinates])
+
     const weatherData = dataDestructure(value, tabValue)
     const { status, lat, lon, timezone, temp, pressure, humidity, sunrise, sunset, description, windSpeed } = weatherData
 
@@ -43,7 +42,7 @@ const PageWeatherResults: React.FC = () => {
         // 'value' excluded due to infinite render loop.
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tabValue, coordinates])
-    console.log("errrrrr", error?.message, value)
+
     return (
         <>
             {
@@ -61,7 +60,7 @@ const PageWeatherResults: React.FC = () => {
                 variant="contained"
                 color="success"
                 startIcon={<ArrowBackIcon />}
-                sx={{ position: "absolute", top: "20px", left: "20px" }}
+                sx={repeatableSx.backBtn}
                 onClick={() => navigate(-1)}
                 component={motion.div}
                 variants={containerVariants}
@@ -111,7 +110,7 @@ const PageWeatherResults: React.FC = () => {
                                             <Stack flexDirection="row" justifyContent="space-between">
                                                 <Box>
                                                     <Typography variant="h3" sx={pageWeatherResultsSx.timezone}>{timezone}</Typography>
-                                                    <Typography variant="h6">Monday 29 August</Typography>
+                                                    <Typography variant="h6">{moment(Date.now()).format('dddd ll')}</Typography>
                                                 </Box>
                                                 <Box sx={[pageWeatherResultsSx.dialogWrapper.main, pageWeatherResultsSx.dialogWrapper.displayOff]}>
                                                     <DialogComponent

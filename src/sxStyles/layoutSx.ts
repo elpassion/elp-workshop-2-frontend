@@ -1,8 +1,6 @@
 export const layoutSx = {
     container: {
-        backgroundImage: "url(./pic1.jpg)",
-        // backgroundImage: "url(./pic3.jpg)",
-        // backgroundImage: "url(./pic7.jpg)",
+        backgroundImage: "url(./pic7.jpg)",
         backgroundRepeat: " no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
