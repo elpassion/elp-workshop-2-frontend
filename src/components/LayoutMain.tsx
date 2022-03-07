@@ -9,7 +9,7 @@ type LayoutProps = {
 const LayoutMain: React.FC<LayoutProps> = ({ children }) => {
     return (
         <Box sx={layoutSx.container}>
-            <Box sx={layoutSx.paper}>
+            <Box sx={layoutSx.backdrop}>
                 {children}
             </Box>
         </Box>

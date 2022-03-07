@@ -1,15 +1,22 @@
 export const dialogComponentSx = {
     wrapper: {
         marginTop: "30px",
+        marginBottom: "50px",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
+        width: "100%",
     },
     btn: {
-        width: 0.8,
-        backgroundColor: "rgba(255,255,255,0.8)",
+        width: "fit-content",
+        maxWidth: "350px",
+        backgroundColor: "rgba(255, 234, 167,0.8)",
         color: "black",
-        padding: "10px 10px",
-        minHeight: "80px"
+        padding: "10px 20px",
+        fontFamily: "Quicksand",
+        fontWeight: "bold",
+        "&:hover": {
+            backgroundColor: "orange"
+        }
     }
 }
